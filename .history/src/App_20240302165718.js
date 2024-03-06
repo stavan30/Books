@@ -6,25 +6,11 @@ import BookList from './components/BookList'
 const App = () => {
     const [books, setBooks] = useState([]);
 
-    const editBookById = (id, newTitle) => {
-        const updatedBooks = books.map((book)=>{
-            if (book.id === id){
-                return {...books, title: newTitle}
-            }
-
-            return books
-        })
-
-        setBooks(updatedBooks)
-    }
-
     //Use Filter function to delete a book by its id, usually to delete an object in an array we use filter function.
     const deleteBookById = (id) =>{
         const updatedBooks = books.filter((book)=>{
-            return book.id !== id;
+            return book.id != id;
         })
-
-        setBooks(updatedBooks);
     }
 
     const createBook = (title) =>{
@@ -41,8 +27,7 @@ const App = () => {
 
   return (
     <div className='app'>
-        <h1>Reading List</h1>
-        <BookList onEdit={editBookById} onDelete={deleteBookById} Books={books}/>
+        <BookList onDelete={deleteBookById} Books={books}/>
         <BookCreate onCreate={createBook}/>
     </div>
     

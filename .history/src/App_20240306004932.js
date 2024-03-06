@@ -9,7 +9,7 @@ const App = () => {
     const editBookById = (id, newTitle) => {
         const updatedBooks = books.map((book)=>{
             if (book.id === id){
-                return {...books, title: newTitle}
+                return {...books, newTitle}
             }
 
             return books
@@ -41,7 +41,6 @@ const App = () => {
 
   return (
     <div className='app'>
-        <h1>Reading List</h1>
         <BookList onEdit={editBookById} onDelete={deleteBookById} Books={books}/>
         <BookCreate onCreate={createBook}/>
     </div>
