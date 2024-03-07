@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import BookCreate from './components/BookCreate';
 import BookList from './components/BookList'
 
@@ -8,36 +8,25 @@ const App = () => {
     const [books, setBooks] = useState([]);
 
     const fetchBooks = async () => {
-        const response = await axios.get('http://localhost:3002/books')
+        const response = await axios.get('http://:localhost:3002/books')
 
         setBooks(response.data);
     }
 
-    useEffect(()=>{
-        fetchBooks();
-    },[])
-
-    const editBookById = async (id, newTitle) => {
-
-        const response = await axios.put(`http://localhost:3002/books/${id}`, {
-            title: newTitle,
-        })
-
+    const editBookById = (id, newTitle) => {
         const updatedBooks = books.map((book)=>{
             if (book.id === id){
-                return {...book, ...response.data}
+                return {...books, title: newTitle}
             }
 
-            return book
+            return books
         })
 
         setBooks(updatedBooks)
     }
 
     //Use Filter function to delete a book by its id, usually to delete an object in an array we use filter function.
-    const deleteBookById = async (id) =>{
-        await axios.delete(`http://localhost:3002/books/${id}`)
-
+    const deleteBookById = (id) =>{
         const updatedBooks = books.filter((book)=>{
             return book.id !== id;
         })

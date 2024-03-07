@@ -28,7 +28,7 @@ const App = () => {
                 return {...book, ...response.data}
             }
 
-            return book
+            return books
         })
 
         setBooks(updatedBooks)

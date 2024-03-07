@@ -19,7 +19,7 @@ const App = () => {
 
     const editBookById = async (id, newTitle) => {
 
-        const response = await axios.put(`http://localhost:3002/books/${id}`, {
+        const response = await axios.put(`http://localhost:3002/books/${id}`,{
             title: newTitle,
         })
 
@@ -28,7 +28,7 @@ const App = () => {
                 return {...book, ...response.data}
             }
 
-            return book
+            return books
         })
 
         setBooks(updatedBooks)
